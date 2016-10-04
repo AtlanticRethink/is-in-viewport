@@ -1,8 +1,8 @@
-// Checks whether particular element is in middle of viewport
+// Checks whether particular element is in the viewport on scroll
 
 var isElementInViewport = function(el) {
 
-    // special bonus for those using jQuery
+    // Special bonus for those using jQuery
     if (typeof jQuery === "function" && el instanceof jQuery) {
         el = el[0];
     }
@@ -11,36 +11,28 @@ var isElementInViewport = function(el) {
     var rect = el.getBoundingClientRect();
 
     return (
-        rect.top >= ((window.innerHeight - rect.top) * 0.3 || (document.documentElement.clientHeight - rect.top) * 0.3) &&
+        rect.top >= 0 &&
         rect.left >= 0 &&
-        rect.bottom <= ((window.innerHeight + rect.bottom) * 0.4 || (document.documentElement.clientHeight + rect.bottom) * 0.4) &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 };
 
-/*
+var elementInViewRunThisAction = function() {
+    if (isElementInViewport( /* YOUR DOM ELEMENT HERE */ )) {
 
-// Use the above like so:
+        /*
+        
 
-function onVisibilityChange(el, callback) {
-    var old_visible;
-    return function () {
-        var visible = isElementInViewport(el);
-        if (visible != old_visible) {
-            old_visible = visible;
-            if (typeof callback == 'function') {
-                callback();
-            }
-        }
+        ACTIONS TO RUN IF ELEMENT IS IN VIEW
+
+
+        */
+
+    } else {
+
+        return;
     }
-}
+};
 
-var handler = onVisibilityChange(el, function() {
-    // ADD THE CODE YOU'D LIKE TO EXECUTE HERE
-});
-
-
-// Execute the function using jQuery: 
-$(window).on('DOMContentLoaded load resize scroll', handler);
-
-*/
+$(window).scroll(elementInViewRunThisAction);

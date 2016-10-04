@@ -1,21 +1,19 @@
 # isInViewport.js explained  
 
- `var isElementInViewport = function(el) {};`  
- 
-```
-    // special bonus for those using jQuery
-    if (typeof jQuery === "function" && el instanceof jQuery) {
-        el = el[0];
-    }
+* Load jQuery library first:  
+`<script src="https://code.jquery.com/jquery-3.1.0.js"></script>`  
 
-    // Returns the size of an element and its position relative to the viewport.
-    var rect = el.getBoundingClientRect();
+* Place the following functions at the bottom of the `<body>`:  
+`var isElementInViewport = function(el) {...};`  
+`var elementInViewRunThisAction = function() {...}`  
+`$(window).scroll(elementInViewRunThisAction);`  
 
-    return (
-        rect.top >= ((window.innerHeight - rect.top) * 0.3 || (document.documentElement.clientHeight - rect.top) * 0.3) &&
-        rect.left >= 0 &&
-        rect.bottom <= ((window.innerHeight + rect.bottom) * 0.4 || (document.documentElement.clientHeight + rect.bottom) * 0.4) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-};  
-```
+* Define the DOM element you would like to track, e.g.:  
+`var containerObject = document.getElementById("containerObject");`  
+
+* In the `elementInViewRunThisAction` function, place the DOM element variable you defined above within the parentheses here and delete the `/* YOUR DOM ELEMENT HERE */` comment: 
+  * `isElementInViewport(/* YOUR DOM ELEMENT HERE */)` becomes:  
+  * `isElementInViewport(containerObject)`  
+
+* Define the actions you'd like to trigger once the DOM element you defined is in view, i.e. in the if block b/n lines 23 and 31  
+
