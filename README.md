@@ -5,7 +5,7 @@
 
 * Place the following functions at the bottom of the `<body>`:  
 `var isElementInViewport = function(el) {...};`  
-`var elementInViewRunThisAction = function() {...}`  
+`var elementInViewRunThisAction = function() {...};`  
 `$(window).scroll(elementInViewRunThisAction);`  
 
 * Define the DOM element you would like to track, e.g.:  
